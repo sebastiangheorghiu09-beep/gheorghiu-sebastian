@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Exerciții vectori</title>
+</head>
 
+<body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 30px;">
+
+  <div style="max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px;">
+
+    <h1 style="text-align: center;">EXERCIȚII VECTORI</h1>
+
+    <pre style="font-family: Consolas, monospace; font-size: 17px; line-height: 1.6; white-space: pre-wrap;">
+EXERCIȚIUL 1
+
+Vector caracteristic
+
+Un șir finit se numește palindromic dacă, parcurgându-l termen cu termen, de la stânga la dreapta sau de la dreapta la stânga, se obține același șir de valori.
+
+Exemplu: șirul 12 13 16 13 12 este palindromic.
+
+Fișierul bac.in conține un șir de cel mult 10^6 numere naturale din intervalul [1, 10^3], separate prin câte un spațiu. Se cere să se afișeze pe ecran mesajul DA, dacă numerele din șir pot fi rearanjate astfel încât să formeze un șir palindromic, sau mesajul NU în caz contrar. Proiectați un algoritm eficient din punctul de vedere al timpului de executare.
+
+Exemplu: dacă fișierul conține numerele 100 30 100 30 500 30 30 se afișează pe ecran DA.
+
+Rezolvare:
+
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+using namespace std;
+
+int v[1001];
+
+int main()
+{
+    int x, i, mini = 1000, maxi = 1, k = 0;
+
+    ifstream f("bac.in");
+
+    while (f &gt;&gt; x)
+    {
+        if (x &gt;= maxi)
+            maxi = x;
+
+        if (x &lt;= mini)
+            mini = x;
+
+        v[x]++;
+    }
+
+    for (i = mini; i &lt;= maxi; i++)
+        if (v[i] % 2 != 0)
+            k++;
+
+    if (k &gt; 1)
+        cout &lt;&lt; "NU";
+    else
+        cout &lt;&lt; "DA";
+
+    f.close();
+
+    return 0;
+}
+
+
+
+EXERCIȚIUL 2
+
+Maxim/minim
+
+Fișierul bac.txt conține un șir de cel mult 10^5 numere naturale din intervalul [1, 10^9], separate prin câte un spațiu. Se cere să se afișeze pe ecran cea mai mare poziție pe care ar putea-o ocupa primul termen al șirului aflat în fișier în șirul format cu aceleași valori, ordonat descrescător. Proiectați un algoritm eficient din punctul de vedere al memoriei utilizate și al timpului de executare.
+
+Exemplu: dacă fișierul bac.txt conține numerele 15 7 15 17 6 4 21 se afișează pe ecran 4.
+
+15 se află pe a treia și pe a patra poziție în șirul 21, 17, 15, 15, 7, 6, 4.
+
+Rezolvare:
+
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+using namespace std;
+
+int main()
+{
+    ifstream f("bac.txt");
+
+    int x, y, nr = 0;
+
+    f &gt;&gt; x;
+
+    while (f &gt;&gt; y)
+    {
+        if (y &gt;= x)
+            nr++;
+    }
+
+    cout &lt;&lt; nr + 1;
+
+    f.close();
+
+    return 0;
+}
+
+
+
+EXERCIȚIUL 3
+
+Vector caracteristic
+
+Fișierul bac.in conține un șir de cel mult 10^6 numere naturale din intervalul [0, 10^9], separate prin câte un spațiu. Se cere să se afișeze pe ecran pozițiile din șir pe care se află termeni precedați de un număr maxim de valori care au cifra unităților egală cu cifra unităților lor. Numerele afișate sunt separate prin câte un spațiu. Proiectați un algoritm eficient din punctul de vedere al timpului de executare.
+
+Exemplu: dacă fișierul bac.in conține numerele 112 12 5 25 88 15 2 19 32 179 35 621 pe ecran se afișează numerele de mai jos:
+
+9 11
+
+Termenii 32, respectiv 35, respectă proprietatea cerută.
+
+Rezolvare:
+
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+using namespace std;
+
+int v[10], p[10];
+
+int main()
+{
+    int i, x, maxim;
+
+    ifstream f("bac.in");
+
+    i = 1;
+    maxim = 0;
+
+    while (f &gt;&gt; x)
+    {
+        v[x % 10]++;
+        p[x % 10] = i;
+
+        if (v[x % 10] &gt; maxim)
+            maxim = v[x % 10];
+
+        i++;
+    }
+
+    for (i = 0; i &lt;= 9; i++)
+        if (v[i] == maxim)
+            cout &lt;&lt; p[i] &lt;&lt; " ";
+
+    f.close();
+
+    return 0;
+}
+    </pre>
+
+    <div style="margin-top: 30px; text-align: center;">
+      <button onclick="window.location.href='Pag2.html';"
+        style="padding: 12px 24px; font-size: 18px; border-radius: 8px; cursor: pointer; margin-right: 10px;">
+        Pagina anterioară
+      </button>
+
+      <button onclick="window.location.href='index.html';"
+        style="padding: 12px 24px; font-size: 18px; border-radius: 8px; cursor: pointer;">
+        Înapoi la prima pagină
+      </button>
+    </div>
+
+  </div>
+
+</body>
+</html>
